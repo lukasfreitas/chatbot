@@ -1,0 +1,11 @@
+services:
+  chatbot:
+    build:
+      context: .               # Define o contexto como a raiz do projeto
+      dockerfile: source/front/Dockerfile
+    env_file:
+      - ./.env 
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./source:/app/source

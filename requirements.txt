@@ -1,0 +1,7 @@
+streamlit      # Versão atual no momento, ajuste se necessário
+langchain   # Ajuste para a versão específica que precisa
+langgraph     # Ajuste conforme a versão usada no projeto
+pinecone-client # Versão atual do cliente Pinecone, ajuste conforme necessário
+openai         # Para integração com OpenAI, ajuste conforme a versão necessária
+requests       # Biblioteca de requisições HTTP, comumente utilizada
+cohere
