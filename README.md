@@ -5,43 +5,23 @@ Este projeto é um chatbot interativo desenvolvido com Streamlit, LangChain, e G
 ## Funcionalidades
 
 - **Respostas baseadas no idioma do usuário**: O chatbot detecta automaticamente o idioma do usuário e responde no mesmo idioma, exceto se houver uma solicitação explícita para responder em outro idioma.
-- **Engenharia de Prompt com Verificação de Intenção**: Utiliza LangChain e Groq para classificar mensagens dos usuários em tipos como informações factuais, preferências ou feedback.
-- **Memória Persistente**: Armazena preferências e informações confirmadas, para fornecer uma interação mais personalizada em conversas futuras.
+- **Engenharia de Prompt com Verificação de Intenção [incompleta]**: Utiliza LangChain e Groq para classificar mensagens dos usuários em tipos como informações factuais, preferências ou feedback.
+- **Memória Persistente [incompleta]**: Armazena preferências e informações confirmadas, para fornecer uma interação mais personalizada em conversas futuras.
 - **Configuração de Docker**: Implementado em um ambiente Docker para facilitar a implantação e o uso.
-
-## Estrutura do Projeto
-
-```plaintext
-chatbot/
-├── docker-compose.yml          # Configuração do Docker Compose
-├── .env                        # Variáveis de ambiente
-├── README.md                   # Documentação do projeto
-├── source/
-│   ├── back/
-│   │   ├── main.py             # Função principal do backend para gerar respostas
-│   │   ├── config.py           # Configurações gerais, como API keys
-│   │   ├── agent/
-│   │   │   ├── tool_graph.py   # Gerencia o fluxo de conversação
-│   │   │   ├── prompt_engineering.py # Lógica de engenharia de prompt
-│   ├── front/
-│   │   ├── main.py             # Interface do chatbot usando Streamlit
-│   │   ├── Dockerfile          # Dockerfile para o front (Streamlit)
-└── requirements.txt            # Dependências do Python
-```
 
 ## Configuração e Instalação
 
 ### Pré-requisitos
 
 - Docker e Docker Compose
-- Conta e chave de API do Groq
+
 
 ### Passos
 
 1. Clone o repositório:
 
    ```bash
-   git clone <url-do-repositorio>
+   git clone https://github.com/lukasfreitas/chatbot
    cd chatbot
    ```
 
@@ -49,9 +29,16 @@ chatbot/
 
    ```plaintext
    GROQ_API_KEY=YOUR_GROQ_API_KEY
+   GROQ_API_KEY=
+   PINECONE_API_KEY=
+   PINECONE_ENVIRONMENT=
+   PINECONE_HOST=
+   TAVILY_API_KEY=
+   INDEX_NAME=
+   MODEL_ID=llama3-groq-8b-8192-tool-use-preview
    ```
 
-3. Inicie o Docker Compose para subir os serviços:
+3. Inicie o Docker Compose para subir o serviço:
 
    ```bash
    sudo docker-compose up --build
@@ -70,9 +57,6 @@ chatbot/
 ### Exemplos de Entrada
 
 - Pergunta factual: "Qual é a capital do Brasil?"
-- Preferência: "Prefiro um tom mais formal nas respostas."
-
-## Estrutura de Código
 
 ### Engenharia de Prompt
 
@@ -94,11 +78,6 @@ class PromptEngineeringLayer:
 - **LangChain** e **Groq** para gerenciamento do fluxo de diálogo e processamento de linguagem natural
 - **Streamlit** para interface de usuário
 - **Docker** para encapsulamento e fácil implantação
-
-## Problemas Conhecidos
-
-- Depreciação de `LLMChain` no LangChain: Substituído por `RunnableSequence`.
-- Erros de integração podem ocorrer devido a mudanças nas APIs do LangChain e Groq.
 
 ## Contribuição
 
