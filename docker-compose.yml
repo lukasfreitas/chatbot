@@ -2,7 +2,7 @@ services:
   chatbot:
     build:
       context: .               # Define o contexto como a raiz do projeto
-      dockerfile: source/front/Dockerfile
+      dockerfile: source/Dockerfile
     env_file:
       - ./.env 
     ports:

@@ -21,7 +21,7 @@ RUN pip install --upgrade pip && \
     deep_translator
 
 # Copia o diretório completo do código para o container
-COPY ./source /app/source
+COPY . /app/source
 
 # Configura o PYTHONPATH para incluir o diretório /app/source
 ENV PYTHONPATH="${PYTHONPATH}:/app/source"
