@@ -84,7 +84,7 @@ Este projeto é um chatbot interativo desenvolvido com Streamlit, LangChain, e G
 
 **Preferência** Gostaria que você me respondesse de forma mais formal.
 
-**Geral:** Qual foi minha primeira mensagem ?
+**Geral:** Quem descobriu o Brasil ?
 
 
 ### Interação com o Chatbot
