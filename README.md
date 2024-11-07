@@ -5,8 +5,8 @@ Este projeto é um chatbot interativo desenvolvido com Streamlit, LangChain, e G
 ## Funcionalidades
 
 - **Respostas baseadas no idioma do usuário**: O chatbot detecta automaticamente o idioma do usuário e responde no mesmo idioma, exceto se houver uma solicitação explícita para responder em outro idioma.
-- **Engenharia de Prompt com Verificação de Intenção [incompleta]**: Utiliza LangChain e Groq para classificar mensagens dos usuários em tipos como informações factuais, preferências ou feedback.
-- **Memória Persistente [incompleta]**: Armazena preferências e informações confirmadas, para fornecer uma interação mais personalizada em conversas futuras.
+- **Engenharia de Prompt com Verificação de Intenção**: Utiliza LangChain e Groq para classificar mensagens dos usuários em tipos como informações factuais, preferências ou feedback.
+- **Consultas ao historico de mensagens**: O chatbot detecta é capaz de consultar o historico de mensagens
 - **Configuração de Docker**: Implementado em um ambiente Docker para facilitar a implantação e o uso.
 
 ## Configuração e Instalação
