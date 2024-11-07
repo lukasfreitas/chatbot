@@ -58,8 +58,8 @@ def rag_flow_state(state: State, prompt: str) -> str:
     index_site_content(
         prompt,
         [
-            "https://www.waproject.com.br/software",
-            "https://www.waproject.com.br/cases/motorola-edge",
+            "https://software.waproject.com.br/",
+            "https://www.waproject.com.br/",
         ],
     )
     # Executa o fluxo RAG e registra a resposta no histórico

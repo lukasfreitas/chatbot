@@ -17,13 +17,17 @@ intention_prompt = PromptTemplate(
     input_variables=["user_message"],
     template=(
         "Classifique a intenção do usuário com base na seguinte mensagem: "
-        "{user_message}. Indique se é uma: "
-        "(1) Informação factual, "
-        "(2) Preferência, "
-        "(3) Feedback, "
-        "(4) Correção de fato, "
-        "ou (5) Pergunta sobre histórico da conversa, como 'Qual foi minha primeira mensagem?', "
-        "'O que eu disse antes?' ou 'Qual foi minha última mensagem?'."
+        "\"{user_message}\". Determine qual das intenções abaixo melhor representa a mensagem e forneça apenas o número correspondente:\n\n"
+        "(1) Informação factual: A mensagem do usuário compartilha um fato ou afirmação específica, "
+        "como 'A capital do Brasil é Brasília' ou 'A empresa foi fundada em 2001'.\n"
+        "(2) Preferência: A mensagem expressa uma preferência ou desejo pessoal do usuário, "
+        "como 'Prefiro respostas formais' ou 'Gostaria de receber menos notificações'.\n"
+        "(3) Feedback: O usuário fornece uma opinião ou avaliação, como 'O sistema está funcionando bem' "
+        "ou 'A resposta anterior foi confusa'.\n"
+        "(4) Correção de fato: O usuário corrige uma informação ou fato mencionado anteriormente, "
+        "como 'A data correta é 2022, não 2021' ou 'Na verdade, a sede da empresa fica em São Paulo'.\n"
+        "(5) Pergunta sobre histórico da conversa: O usuário pergunta sobre informações passadas da conversa, "
+        "como 'Qual foi minha primeira mensagem?', 'O que eu disse antes?' ou 'Qual foi minha última mensagem?'."
     )
 )
 
