@@ -1,4 +1,5 @@
-# Usa uma imagem leve do Python
+# source/Dockerfile
+
 FROM python:3.11-slim
 
 # Define o diretório de trabalho dentro do container

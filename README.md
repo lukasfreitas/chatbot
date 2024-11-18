@@ -1,13 +1,16 @@
 # Chatbot Interativo com LangChain e Groq
 
-Este projeto é um chatbot interativo desenvolvido com Streamlit, LangChain, e Groq. O objetivo do chatbot é responder perguntas, armazenar preferências do usuário e realizar verificações de informações factuais, garantindo respostas personalizadas no idioma do usuário.
+Este projeto é um chatbot interativo desenvolvido com Streamlit, LangChain, e Groq. 
 
 ## Funcionalidades
 
 - **Respostas baseadas no idioma do usuário**: O chatbot detecta automaticamente o idioma do usuário e responde no mesmo idioma, exceto se houver uma solicitação explícita para responder em outro idioma.
-- **Engenharia de Prompt com Verificação de Intenção**: Utiliza LangChain e Groq para classificar mensagens dos usuários em tipos como informações factuais, preferências ou feedback.
-- **Consultas ao historico de mensagens**: O chatbot detecta é capaz de consultar o historico de mensagens
-- **Configuração de Docker**: Implementado em um ambiente Docker para facilitar a implantação e o uso.
+- **Engenharia de Prompt com Verificação de Intenção**: Utiliza LangChain e Groq para classificar mensagens dos usuários em categorias.
+- **Consultas ao Histórico de Mensagens**: O chatbot é capaz de consultar o histórico de interações.
+- **Integração com Tavily**: Utiliza a API Tavily para consultas com contexto especifico.
+- **Configuração com Docker**: Totalmente encapsulado em um ambiente Docker para fácil implantação, portabilidade e consistência entre ambientes.
+- **Integração com Pinecone**: Utiliza Pinecone para armazenamento e recuperação eficiente de dados vetoriais, otimizando consultas baseadas em embeddings.
+- **Flexibilidade de Fluxos de Diálogo**: Gerenciamento de fluxos dinâmicos através do LangGraph, permitindo adaptação a diferentes cenários de interação.
 
 ## Configuração e Instalação
 
@@ -77,46 +80,25 @@ Este projeto é um chatbot interativo desenvolvido com Streamlit, LangChain, e G
 
 4. Acesse o chatbot em seu navegador na URL `http://localhost:8501`.
 
-## Uso dos fluxos
-**Tavily:** WaProject é uma software house ?
+### Exemplos de Entrada
+**Tavily:** Você conhece a waproject ?
 
 **Histórico:** Qual foi minha primeira mensagem ?
 
-**Preferência** Gostaria que você me respondesse de forma mais formal.
+**Preferência** Me responda de forma mais formal.
 
-**Geral:** Quem descobriu o Brasil ?
-
-
-### Interação com o Chatbot
-
-1. Abra a interface no navegador.
-2. Digite uma mensagem no campo de entrada e pressione Enter.
-3. O chatbot detectará o idioma e a intenção da mensagem e responderá de acordo.
-
-### Exemplos de Entrada
-
-- Pergunta factual: "Qual é a capital do Brasil?"
-
-### Engenharia de Prompt
-
-A engenharia de prompt está implementada em `prompt_engineering.py` e usa templates de LangChain para classificar a intenção da mensagem do usuário. Com `RunnableSequence`, o projeto processa verificações factuais e armazena informações conforme necessário.
-
-```python
-from langchain.prompts import PromptTemplate
-from langchain.memory import ConversationBufferMemory
-from langchain_core.runnables.base import RunnableSequence
-
-class PromptEngineeringLayer:
-    def __init__(self):
-        # Configuração dos prompts e verificação
-        ...
-```
+**Geral:** Quem foi Alberto Santos-Dumont ?
 
 ## Tecnologias Utilizadas
 
-- **LangChain** e **Groq** para gerenciamento do fluxo de diálogo e processamento de linguagem natural
-- **Streamlit** para interface de usuário
-- **Docker** para encapsulamento e fácil implantação
+- **LangChain** para o gerenciamento do fluxo de diálogo e integração com ferramentas de IA
+- **Groq** para processamento avançado de linguagem natural utilizando LLMs
+- **Streamlit** para criação de uma interface de usuário interativa e acessível
+- **Docker** para encapsulamento, fácil implantação e garantia de portabilidade
+- **LangGraph** para estruturação e execução de fluxos de interação dinâmicos
+- **Pinecone** para armazenamento e recuperação eficiente de dados vetoriais
+- **deep-translator** para tradução de respostas, garantindo suporte multilíngue
+- **Python** como linguagem base para desenvolvimento de todas as funcionalidades
 
 ## Contribuição
 

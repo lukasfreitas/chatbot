@@ -1,29 +1,26 @@
-from back.config import GROQ_API_KEY, MODEL_ID
-from groq import Groq
+# source/back/agent/general_flow.py
+"""
+Gerenciamento do fluxo geral do agente.
+Implementa interações genéricas com o modelo.
+"""
+
+from back.config import MODEL_ID
+from back.groq_client import get_groq_client
 
 
-def create_general_chain():
-    # Inicializa o cliente Groq com a chave da API
-    client = Groq(api_key=GROQ_API_KEY)
-    return client
-
-cliente = create_general_chain()
-def get_groq_cliente():
-    return cliente
 def general_flow(prompt):
-    # Cria uma instância do cliente Groq
-    client = get_groq_cliente()
-
-    # Faz a requisição de conclusão de chat usando o modelo da Groq
-    chat_completion = client.chat.completions.create(
+    """
+    Gera uma resposta baseada no prompt fornecido.
+    Utiliza o modelo definido no ambiente para completar as interações.
+    """
+    client_instance = get_groq_client()
+    chat_completion = client_instance.chat.completions.create(
         messages=[
             {
-                "role": "user",
-                "content": prompt,
+                'role': 'user',
+                'content': prompt,
             }
         ],
-        model=MODEL_ID,  # Modelo definido no .env, como 'llama3-8b-8192'
+        model=MODEL_ID,
     )
-
-    # Retorna o conteúdo da resposta
     return chat_completion.choices[0].message.content

@@ -1,49 +1,49 @@
+"""
+Frontend do chatbot usando Streamlit.
+Gerencia a interface e interações com o usuário.
+"""
+
 import streamlit as st
 from back.main import generate_response
 
-# Título do Chatbot
-st.title("Chat Bot")
+st.title('Chat Bot')
 cont = st.container()
 
-# Inicializa o estado da sessão para armazenar mensagens
-if "messages" not in st.session_state:
-    st.session_state["messages"] = [
-        {"role": "assistant", "content": "Olá! Como posso ajudar você hoje?"}
+if 'messages' not in st.session_state:
+    st.session_state['messages'] = [
+        {'role': 'assistant', 'content': 'Olá! Como posso ajudar você hoje?'}
     ]
 
-# Exibe o histórico de mensagens na interface
 with cont:
-    for m in st.session_state["messages"]:
-        if m["role"] == 'user':
-            st.chat_message("user").write(m["content"])
-        elif m["role"] == "assistant":
-            st.chat_message("assistant").write(m["content"])
+    for m in st.session_state['messages']:
+        if m['role'] == 'user':
+            st.chat_message('user').write(m['content'])
+        elif m['role'] == 'assistant':
+            st.chat_message('assistant').write(m['content'])
 
-# Campo de entrada para o usuário
-prompt = st.chat_input("Digite sua mensagem:")
+prompt = st.chat_input('Digite sua mensagem:')
 
 if prompt:
-    # Adiciona a mensagem do usuário ao histórico
-    st.session_state["messages"].append({
-        "role": "user",
-        "content": prompt
-    })
-    st.chat_message("user").write(prompt)
+    st.session_state['messages'].append({'role': 'user', 'content': prompt})
+    st.chat_message('user').write(prompt)
 
-    # Placeholder para a resposta do bot
-    placeholder = st.chat_message("assistant")
+    bot_message_placeholder = st.chat_message('assistant')
+    with bot_message_placeholder:
 
-    # Chama o backend para obter a resposta processada
-    response = generate_response(prompt)
-    placeholder.write(response)
+        response_slot = st.empty()
+        spinner_slot = bot_message_placeholder.container()
 
-    # Adiciona a resposta do backend ao histórico de mensagens
-    st.session_state["messages"].append({
-        "role": "assistant",
-        "content": response
-    })
+        with spinner_slot:
+            with st.spinner('Gerando resposta...'):
+                response = generate_response(prompt)
 
-# Estilização para dispositivos móveis (opcional)
+        spinner_slot.empty()
+        response_slot.write(response)
+
+    st.session_state['messages'].append(
+        {'role': 'assistant', 'content': response}
+    )
+
 st.markdown(
     """
     <style>
@@ -55,5 +55,5 @@ st.markdown(
     }
     </style>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
