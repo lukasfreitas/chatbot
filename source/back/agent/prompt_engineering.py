@@ -93,32 +93,32 @@ class PromptEngineeringLayer:
         return None
 
 
-def get_user_intent(self, user_message):
-    """
-    Processa a mensagem do usuário para determinar sua intenção e o fluxo associado.
+    def get_user_intent(self, user_message):
+            """
+            Processa a mensagem do usuário para determinar sua intenção e o fluxo associado.
 
-    Este método salva o contexto da mensagem do usuário,
-    invoca a cadeia de intenção para detectar a intenção associada à mensagem e mapeia
-    a intenção detectada para um fluxo correspondente. Caso ocorra um erro durante o
-    processamento, um fluxo padrão ('nonsense') é retornado.
+            Este método salva o contexto da mensagem do usuário,
+            invoca a cadeia de intenção para detectar a intenção associada à mensagem e mapeia
+            a intenção detectada para um fluxo correspondente. Caso ocorra um erro durante o
+            processamento, um fluxo padrão ('nonsense') é retornado.
 
-    Args:
-        user_message (str): A mensagem do usuário para análise de intenção.
+            Args:
+                user_message (str): A mensagem do usuário para análise de intenção.
 
-    """
-    try:
-        self.memory.save_context({'user': user_message}, {'bot': ''})
-        detected_intent = self.intention_chain.invoke(
-            {'user_message': user_message}
-        ).strip()
-        current_flow = self.intention_label.get(
-            self.get_intent_id(detected_intent), 'nonsense'
-        )
-        log_process_data.update({'raw_intent': detected_intent})
-        return current_flow
-    except Exception as e:
-        st.warning(f'Erro ao processar intenção: {str(e)}')
-        return 'nonsense'
+            """
+            try:
+                self.memory.save_context({'user': user_message}, {'bot': ''})
+                detected_intent = self.intention_chain.invoke(
+                    {'user_message': user_message}
+                ).strip()
+                current_flow = self.intention_label.get(
+                    self.get_intent_id(detected_intent), 'nonsense'
+                )
+                log_process_data.update({'raw_intent': detected_intent})
+                return current_flow
+            except Exception as e:
+                st.warning(f'Erro ao processar intenção: {str(e)}')
+                return 'nonsense'
 
     def handle_history_question(self, user_message):
         """
@@ -147,7 +147,7 @@ def get_user_intent(self, user_message):
                 else 'Não tenho registro de mensagens anteriores.'
             )
 
-        return 'Essa pergunta não está relacionada ao histórico. Posso ajudar com mais alguma coisa?'
+            return 'Essa pergunta não está relacionada ao histórico. Posso ajudar com mais alguma coisa?'
 
     def store_preference(self, preference):
         """
