@@ -231,7 +231,7 @@ class RagFlow:
         search_data = self.process_urls(urls_to_search, index_data)
         if not search_data:
             return 'Não foi possível processar as URLs fornecidas.'
-        return self.generate_response(prompt, search_data)
+        return self.generate_response(prompt)
 
 
 def rag_flow(prompt, urls_to_search, index_data=True, max_length=5000):
